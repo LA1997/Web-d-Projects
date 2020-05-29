@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>second</title>
+    <script src="p5.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <script src="blocks.js"></script>
+    <script>
+        var x=100,y=300,speedx=1,speedy=1,mic;
+        var song,amp;
+        function setup(){
+            
+            song=loadSound("mario.mp3",done);
+            createCanvas(500,500);
+            background('black');
+            
+        }
+        function done()
+        {
+            song.play();
+            amp=new p5.Amplitude();
+        }
+        function draw(){
+            background('black');
+            fill('yellow');
+            if(amp)
+                ellipse(x,y,350*amp.getLevel(),350*amp.getLevel());
+            else
+                ellipse(x,y,50,50);
+            changeDir();
+        }
+        function changeDir()
+        {
+            if(x>=width)
+                speedx=random(-10);
+            else if(x<=0)
+                speedx=random(10);
+            if(y>=height)
+                speedy=random(-10);
+            else if(y<=0)
+                speedy=random(10);
+            x=x+speedx;
+            y=y+speedy;
+            
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
